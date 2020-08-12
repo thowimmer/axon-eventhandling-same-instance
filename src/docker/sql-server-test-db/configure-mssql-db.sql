@@ -1,0 +1,3 @@
+-- empty DB setup
+IF NOT EXISTS(SELECT * FROM SYS.DATABASES WHERE NAME = 'test-db') CREATE DATABASE [test-db];
+GO

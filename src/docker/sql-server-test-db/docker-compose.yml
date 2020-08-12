@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+   sql-server-test-db:
+     image: microsoft/mssql-server-linux:2017-latest
+     container_name: sql-server-test-db
+     volumes:
+       - ./configure-mssql-db.sh:/testdb/configure-mssql-db.sh
+       - ./configure-mssql-db.sql:/testdb/configure-mssql-db.sql
+       - ./entrypoint-mssql.sh:/testdb/entrypoint-mssql.sh
+     restart: always
+     ports:
+       - 1433:1433
+     entrypoint: ["bash", "testdb/entrypoint-mssql.sh"]
+     environment:
+       ACCEPT_EULA: Y
+       SA_PASSWORD: StrongPassw0rd
